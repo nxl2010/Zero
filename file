@@ -1,0 +1,86 @@
+// Viết một chương trình C++ để nhận 5 giá trị nguyên từ bàn phím. 5 giá trị này sẽ được lưu trữ trong một mảng bởi sử dụng một con trỏ. Sau đó, in các phần tử của mảng trên màn hình.
+#include<iostream>
+using namespace std;
+class SinhVien{
+  string tenMon;
+  float tin;
+  float diem;
+  double soTin;
+  double tongDiem;
+  double sodiem;
+public:
+  SinhVien();
+  ~SinhVien();
+  void nhap(SinhVien*,int &n);
+  void hien(SinhVien*,const int &);
+  void Cpa(SinhVien*,const int &);
+  void Xuly(SinhVien*,const int &);
+  friend istream& operator>>(istream&,SinhVien &);
+  friend ostream& operator<<(ostream&,SinhVien &);
+};
+  SinhVien::SinhVien(){
+    tenMon=="";
+    tin=0;
+    diem=0;
+    soTin=0;
+    tongDiem=0;
+    sodiem=0;
+  }
+  SinhVien::~SinhVien(){
+    tenMon=="";
+    tin=0;
+    diem=0;
+    soTin=0;
+    tongDiem=0;
+    sodiem=0;
+  }
+  istream& operator>>(istream& is,SinhVien &a){
+    cout<<"Nhap ten mon hoc: ";fflush(stdin); getline(is,a.tenMon);;cout<<endl;
+    cout<<"Nhap so tin: ";cin>>a.tin;cout<<endl;
+    cout<<"Nhap diem thang 4: ";cin>>a.diem;cout<<endl;
+    return is;
+  }
+  ostream& operator<<(ostream& os,SinhVien &a){
+    cout<<"Mon hoc: "<<a.tenMon<<endl;
+    cout<<"Diem   : "<<a.diem<<endl;
+    cout<<"Tin    : "<<a.tin<<endl;
+    return os;
+  }
+  void SinhVien::nhap(SinhVien* arr,int &n){
+    cout<<"Nhap so mon: ";cin>>n;cout<<endl;
+    for(int i=0;i<n;i++){
+      cin>>arr[i];
+      
+
+    }
+  }
+  void SinhVien::hien(SinhVien *arr,const int &n){
+    for(int i=0;i<n;i++){
+      cout<<arr[i];
+  }
+}
+  void SinhVien::Cpa(SinhVien *arr,const int &n){
+      double cpa;
+      cpa=tongDiem/soTin;
+      cout<<"Diem Cpa: "<<cpa<<endl;
+    }
+
+  void SinhVien::Xuly(SinhVien *arr,const int &n){
+       
+      for(int i=0;i<n;i++){
+      soTin+=arr[i].tin;
+     
+      sodiem=(arr[i].diem) * arr[i].tin; 
+      tongDiem+=sodiem;
+    }
+  }
+int main(){
+  SinhVien a;
+  SinhVien* arr=new SinhVien [100];
+  int n;
+  
+  a.nhap(arr,n);
+  a.hien(arr,n);
+  a.Xuly(arr,n);
+  a.Cpa(arr,n);
+}
